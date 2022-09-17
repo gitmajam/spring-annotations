@@ -3,26 +3,24 @@ package com.spring.annotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component("myCoachA")
-public class BaseballCoach implements Coach {
-	
+@Component("myCoachC")
+public class MicroCoach implements Coach {
+
 	private FortuneService fortuneService;
 	
 	@Override
 	public String getDailyWorkout() {
-		return "Spend 30 minutes on batting practice";
+		return "Spend 30 minutes on hit the ball";
 	}
 
 	@Override
 	public String getDailyFortune() {
-		// TODO Auto-generated method stub
 		return fortuneService.getFortune();
 	}
 	
-	//using setter inyection
+	//using setter inyection with any method name with autowired annotation
 	@Autowired
-	public void setFortuneService(FortuneService fortuneService) {
+	public void setWatheverNameMethod(FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}
-
 }
