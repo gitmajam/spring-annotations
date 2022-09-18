@@ -1,6 +1,7 @@
 package com.spring.annotations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component("myCoachC")
@@ -20,7 +21,7 @@ public class MicroCoach implements Coach {
 	
 	//using setter inyection with any method name with autowired annotation
 	@Autowired
-	public void setWatheverNameMethod(FortuneService fortuneService) {
+	public void setWatheverNameMethod(@Qualifier("timeFortuneService")FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}
 }

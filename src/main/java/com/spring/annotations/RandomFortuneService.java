@@ -1,15 +1,25 @@
 package com.spring.annotations;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("randomFortuneService")
 public class RandomFortuneService implements FortuneService{
+	
+	private List<String> fortunes;
 
 	@Override
 	public String getFortune() {
-		String[] fortunes = {"Today is a great day", "enjoy with your family", "no matter yo do, smile", "one day at a time"};
-		int randomIndex = (int) Math.floor(Math.random()*4);
-		return fortunes[randomIndex];
+		int randomIndex = (int) Math.floor(Math.random()*fortunes.size());
+		return fortunes.get(randomIndex);
+	}
+	
+	@PostConstruct
+	public void readFortunes() {
+		fortunes = Readers.readerTxt("fortunes.txt");
 	}
 
 }
